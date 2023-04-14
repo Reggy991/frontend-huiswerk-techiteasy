@@ -161,3 +161,85 @@ const inventory = [
     sold: 8,
   },
 ];
+
+/*---------------------------------------------------------------------
+ASSIGNMENTS
+---------------------------------------------------------------------*/
+
+/*----------------------
+    Opdracht 1 - Array Methoden
+----------------------*/
+// Opdracht 1a: Gebruik een array-methode om een array te maken met alle tv-type namen. Log de uitkomst in de console.
+const tvType = inventory.map((tv) => {
+  return tv.type;
+});
+console.log("Array met alle tv-type namen:");
+console.log(tvType);
+
+// Opdracht 1b: Gebruik een array-methode om alle tv's te verzamelen (de hele objecten) die volledig uitverkocht zijn. Log de uitkomst in de console.
+const soldOut = inventory.filter((tv) => {
+  const inventoryTv = tv.originalStock - tv.sold
+  return inventoryTv === 0;
+});
+
+console.log("Tv's die volledig uitverkocht zijn:");
+console.log(soldOut);
+
+// Opdracht 1c: Gebruik een array-methode om alle tv's te verzamelen (de hele objecten) die over AmbiLight beschikken. Log de uitkomst in de console.
+const ambilightTvs = inventory.filter((tv) => {
+  return tv.options.ambiLight === true;
+});
+
+console.log("Tv's die over Ambilight beschikken:");
+console.log(ambilightTvs);
+
+// Opdracht 1d: Schrijf een functie die alle tv's van laagste naar hoogste prijs sorteert. Log de uitkomst in de console.
+// Deze functie uitgezet omdat anders onderstaande opdrachten niet meer goed werkten.
+/*inventory.sort((a, b) => a.price - b.price);
+
+console.log("Tv's van laagste naar hoogste prijs:");
+console.log(inventory);*/
+
+
+/*----------------------
+    Opdracht 2 - Elementen in de DOM plaatsen
+----------------------*/
+
+// Opdracht 2a: Hoeveel tv's zijn er al verkocht? Schrijf een script dat dit berekent. Log de uitkomst in de console.
+const arraySoldTVs = inventory.map((tv) => {
+  return tv.sold;
+});
+
+let totalSoldTVs = 0;
+for (let i = 0; i < arraySoldTVs.length; i++) {
+  totalSoldTVs += arraySoldTVs[i];
+}
+
+console.log("Het totaal aantal verkochte tv's is:");
+console.log(totalSoldTVs);
+
+// Opdracht 2b: Zorg ervoor dat dit aantal in het groen wordt weergegeven op de pagina.
+const soldTVs = document.getElementById('soldTVs');
+soldTVs.innerText = totalSoldTVs;
+
+// Opdracht 2c: Hoeveel tv's heeft Tech It Easy ingekocht? Schrijf een script dat dit berekent. Log de uitkomst in de console.
+const arrayBoughtTVs = inventory.map((tv) => {
+  return tv.originalStock
+});
+
+let totalBoughtTVs = 0;
+for (let i = 0; i < arrayBoughtTVs.length; i++) {
+  totalBoughtTVs += arrayBoughtTVs[i];
+}
+
+console.log("Het totaal aantal ingekochte tv's is:");
+console.log(totalBoughtTVs);
+
+// Opdracht 2d: Zorg ervoor dat dit aantal in het blauw wordt weergegeven op de pagina.
+const boughtTVs = document.getElementById('boughtTVs');
+boughtTVs.innerText = totalBoughtTVs;
+
+// Opdracht 2e: Geef in het rood weer hoeveel tv's er nog verkocht moeten worden.
+const inventoryTVs = document.getElementById('inventoryTVs');
+const tvsInventory = totalBoughtTVs - totalSoldTVs;
+inventoryTVs.innerText = tvsInventory;
