@@ -325,7 +325,10 @@ function displayTVs(inventory) {
     const tvScreenSizes = getScreenSize(tv);
     return `${tvName}\n${tvPrice}\n${tvScreenSizes}`;
   });
-  return tvs.join(" ");
+  return tvs.join("\n" + "\n");
 }
 
 console.log(displayTVs(inventory));
+
+const allTVs = document.getElementById('allTVs');
+allTVs.innerText = displayTVs(inventory);
